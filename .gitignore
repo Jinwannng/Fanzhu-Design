@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+._*
+
+# Editors and local workspace state
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Draw.io temporary and backup files
+*.drawio.bkp
+*.drawio.tmp
+
+# Runtime output
+*.log
+tmp/
+.tmp/

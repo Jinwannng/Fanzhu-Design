@@ -1,0 +1,5 @@
+interface:
+  display_name: "范铸 · 制范"
+  short_description: "Build governed Figma molds, recipes, and templates"
+  brand_color: "#9A6735"
+  default_prompt: "Use $fanzhu-library to turn this visual intent into one governed Figma mold family, then submit it for human review."

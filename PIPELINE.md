@@ -1,0 +1,64 @@
+# 范铸 Master Pipeline
+
+## 目标
+
+让 Codex 将灵感快速、高质量地实现到 Figma，同时把“探索新视觉”和“稳定生产页面”分开。速度来自 Approved 范的复用；质量来自范的资产化、机器 Gate 和人工 Visual Gate。
+
+## 入口：灵感覆盖路由
+
+先把 Pinterest、Stitch、截图、网页或代码参考转成 Reference Brief：
+
+- 视觉意图：光源、材质、边缘、层级、状态、构图。
+- 内容意图：信息类型、核心结论、中文长度、数据形态。
+- 生产约束：尺寸、比例、主题、目标文件、Project Profile。
+
+随后检查 Approved Registry：
+
+- Recipe + Template + content budget 全部覆盖 → 进入循环 B · 浇铸。
+- 缺视觉语法、结构、API、Variables/Styles、字体或 Library access → 输出 Mold Gap，进入循环 A · 制范。
+
+外部参考只提供意图，不直接进入 Registry。
+
+## 循环 A：制范
+
+**入口**：Mold Gap、Project Profile、现有 Figma Foundations 与 Reference Brief。
+
+1. Preflight Inventory：检查 Variables、Modes、Styles、Components、linked/remote libraries、字体与命名冲突。
+2. 选择一个 family：Primitive、Recipe 或 Template；不得一次建设多个 family。
+3. Foundations：复用或补齐 semantic Variables 与批准 Styles。
+4. Main Component：用 Auto Layout 和可复用内部结构构建唯一权威范。
+5. Component API：声明 variants、properties、slots、中文容量、required bindings、allowed literals 与 theme behavior。
+6. Machine Gates：创建真实中文测试 Instance，验证 Reuse、Binding、API、Auto Layout 与 Dark/Light geometry。
+7. 提交审核：证据齐全后，Codex 将 `Draft` / `ChangesRequested` 改为 `InReview`。
+8. Human Visual Gate：人决定 `Approved` 或 `ChangesRequested`；Codex 不得推断 verdict。
+9. Publish：Approved key 与 screenshot 写入 Registry，并发布/开放 Library。
+
+出口：`Approved Mold Registry entry + accessible component key + approved screenshot`。
+
+## 循环 B：浇铸
+
+**入口**：已校对内容、目标尺寸/mode、通过覆盖检查的 Approved Registry。
+
+1. Content Plan：每页一个核心结论；校对数字、术语与内容预算。
+2. Build Manifest：声明 target、template key/variant、instances、slots、Variable/Style keys 与 allowed literals。
+3. Manifest Preflight：在任何 Figma 写入前检查 Approved 状态、keys、bindings、内容预算与 literal allowlist。
+4. Library Readiness：确认目标文件可搜索、导入 Approved key，且不会创建 local copy。
+5. Assemble：只创建 Instances；通过 properties、variants、Instance Swap 与 slots 写内容，禁止 detach。
+6. Binding Audit：定位 hardcode、local/detached copy、binding 失效、Auto Layout 与 absolute positioning 例外。
+7. Screenshot：检查局部与整页；第一张代表页面通过后再批量同类页面。
+8. Theme/Output：Dark/Light 只切 mode 或批准的 theme assets；冻结几何、层级和 slot order。
+
+出口：`validated manifest + audited instances + approved page screenshots`。
+
+## 强制回流
+
+- Missing Mold / Component API / Variable / Style / Font / Library → Mold Gap → 停止当前铸件 → 制范。
+- 中文超出 slot budget → 换范、拆页或返回内容规划；禁止缩字硬塞。
+- Manifest Preflight 失败 → 不写 Figma。
+- Binding Audit 失败 → 只修定位节点，不自动重建整页。
+- Visual Gate 拒绝 → Visual Review Record → `ChangesRequested` → 同一 family 有界修改。
+- Deprecated → 新生产拒绝；旧实例通过 replacement + Migration Manifest 迁移。
+
+## Project Profile 边界
+
+范铸核心只定义状态机、接口和执行规则。品牌 Variables、Figma keys、Recipes、Templates、readiness 与 pilot evidence 全部属于 `projects/<project-id>/`。AEGIS X 是首个 Profile，不是产品本身。
