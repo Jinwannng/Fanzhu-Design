@@ -11,8 +11,8 @@ description: "Build or update governed Figma molds: Variables, Styles, Visual Re
 
 Before any Figma action, load and follow `figma-use` and `figma-generate-library`. Read:
 
-- `<repository-root>/README.md`
-- `<repository-root>/PIPELINE.md`
+- repository-root `README.md`
+- repository-root `PIPELINE.md`
 - the selected `projects/<project-id>/README.md`
 - that profile's `interfaces/component-registry.yaml`
 - that profile's `interfaces/binding-policy.yaml`

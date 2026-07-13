@@ -3,10 +3,12 @@
 
 require "yaml"
 
-profile_root = File.expand_path("../projects/aegis-x", __dir__)
-manifest_path = ARGV[0] || File.join(profile_root, "interfaces/build-manifest.example.yaml")
-registry_path = ARGV[1] || File.join(profile_root, "interfaces/component-registry.yaml")
-policy_path = ARGV[2] || File.join(profile_root, "interfaces/binding-policy.yaml")
+unless ARGV.length == 3
+  warn "Usage: ruby scripts/validate-manifest.rb <manifest> <registry> <binding-policy>"
+  exit 64
+end
+
+manifest_path, registry_path, policy_path = ARGV
 
 manifest = YAML.load_file(manifest_path)
 registry = YAML.load_file(registry_path)

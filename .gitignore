@@ -17,3 +17,6 @@
 *.log
 tmp/
 .tmp/
+
+# Private project profiles and local environment data
+projects/aegis-x/

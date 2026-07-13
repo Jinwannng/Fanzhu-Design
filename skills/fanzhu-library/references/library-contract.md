@@ -1,6 +1,6 @@
 # Mold Making contract
 
-- Canonical source: `<repository-root>`.
+- Canonical source: the checked-out repository root.
 - Select exactly one `projects/<project-id>/` before any Figma action.
 - Use the Profile's declared Library source and safe Pilot page.
 - Registry statuses: Draft → InReview → Approved, or InReview → ChangesRequested → InReview.

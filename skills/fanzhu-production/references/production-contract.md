@@ -1,6 +1,6 @@
 # Casting contract
 
-- Canonical source: `<repository-root>`.
+- Canonical source: the checked-out repository root.
 - Select exactly one `projects/<project-id>/` and its declared production target.
 - Convert inspiration to a Reference Brief and prove coverage before writing a Manifest.
 - Use only Registry entries whose status is `Approved` and that include a component key.

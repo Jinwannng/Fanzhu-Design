@@ -15,7 +15,7 @@ EXPECTED = [
   "8. 运行环境",
   "9. 人如何使用",
   "10. AI 如何开始",
-  "11. AEGIS X 当前状态",
+  "11. 公开发布边界",
   "12. 下一步",
   "13. 非目标"
 ].freeze
@@ -26,9 +26,9 @@ ANCHORS = {
   "4. 从灵感到 Figma 的新工作流" => ["Approved 范是否覆盖", "Mold Gap", "ChangesRequested"],
   "5. 三道门与生命周期" => ["Reuse Gate", "Binding Gate", "Visual Gate", "InReview"],
   "6. 工具与机器接口" => ["fanzhu-library", "fanzhu-production", "Build Manifest"],
-  "7. Project Profile" => ["projects/<project-id>/", "AEGIS X"],
+  "7. Project Profile" => ["projects/<project-id>/", "真实 Figma file key"],
   "10. AI 如何开始" => ["check-readme-structure.rb", "validate-manifest.rb"],
-  "11. AEGIS X 当前状态" => ["InReview", "Library", "Cover、Compare、Data"],
+  "11. 公开发布边界" => ["Figma URLs", "API key", "本机路径"],
   "12. 下一步" => ["P0", "P1", "P2", "P3"]
 }.freeze
 

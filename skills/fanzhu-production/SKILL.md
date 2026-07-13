@@ -11,8 +11,8 @@ description: Route visual inspiration and assemble Deck, Dashboard, Poster and t
 
 Before any Figma action, load and follow `figma-use` and `figma-generate-design`. For Figma Slides also load `figma-use-slides`. Read:
 
-- `<repository-root>/README.md`
-- `<repository-root>/WORKFLOW.md`
+- repository-root `README.md`
+- repository-root `WORKFLOW.md`
 - the selected `projects/<project-id>/README.md`
 - that profile's `interfaces/component-registry.yaml`
 - that profile's `interfaces/binding-policy.yaml`
@@ -28,7 +28,7 @@ If no Project Profile is selected, stop before Figma mutation and request the pr
 2. **Coverage check**: map every required visual/layout grammar and content budget to Approved Registry entries. If any item is missing, write a Mold Gap and stop; do not switch into Mold Making inside the same run.
 3. **Content plan**: one conclusion per page; apply Chinese title/body/data budgets. Overflow means revise, split or switch template—never shrink type to force a fit.
 4. **Build Manifest**: target frame, size, mode, Approved template key/variant, Instances, slot content, variable/style keys and allowed literals.
-5. **Manifest Preflight**: run `<repository-root>/scripts/validate-manifest.rb <manifest> <registry> <policy>`. It must pass before any Figma mutation.
+5. **Manifest Preflight**: run `ruby scripts/validate-manifest.rb <manifest> <registry> <policy>` from the repository root. It must pass before any Figma mutation.
 6. **Check readiness**: require the Profile's Library Distribution gate, then search local, linked and remote assets. Reject Draft, InReview, ChangesRequested and Deprecated entries.
 7. **Assemble**: import and instantiate Approved components. Use variants, `setProperties`, Instance Swap and slots. Never detach. Ordinary Frames are limited to Manifest-declared page containers and one-off content geometry.
 8. **Audit**: run `scripts/audit-bindings.js` against each target. Fix only reported nodes; do not rebuild the full page.
