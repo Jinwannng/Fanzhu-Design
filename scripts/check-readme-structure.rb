@@ -22,10 +22,10 @@ EXPECTED = [
 
 ANCHORS = {
   "1. 为什么需要范铸" => ["先制范，再浇铸", "第二次以后快速"],
-  "3. 核心模型" => ["循环 A · 制范", "循环 B · 浇铸", "灵感覆盖路由"],
-  "4. 从灵感到 Figma 的新工作流" => ["Approved 范是否覆盖", "Mold Gap", "ChangesRequested"],
+  "3. 核心模型" => ["循环 A · 制范", "循环 B · 浇铸", "Coverage Report", "owner_unblock"],
+  "4. 从灵感到 Figma 的新工作流" => ["Coverage Report", "Mold Gap", "Gap Report", "ChangesRequested"],
   "5. 三道门与生命周期" => ["Reuse Gate", "Binding Gate", "Visual Gate", "InReview"],
-  "6. 工具与机器接口" => ["fanzhu-library", "fanzhu-production", "Build Manifest"],
+  "6. 工具与机器接口" => ["fanzhu-library", "fanzhu-production", "Build Manifest", "Coverage Report"],
   "7. Project Profile" => ["projects/<project-id>/", "真实 Figma file key"],
   "10. AI 如何开始" => ["check-readme-structure.rb", "validate-manifest.rb"],
   "11. 公开发布边界" => ["Figma URLs", "API key", "本机路径"],

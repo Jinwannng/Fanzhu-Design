@@ -6,22 +6,28 @@
 
 ## 1. 灵感覆盖判断
 
-把灵感转成 Reference Brief，再将需要的 visual grammar、layout grammar、content capacity 与 theme behavior 对照 Approved Registry。
+把灵感转成 Reference Brief，并创建 Coverage Report；将 visual grammar、layout grammar、content capacity 与 theme behavior 对照 Approved Registry。
 
-- 全部覆盖：选择 `fanzhu-production`，进入浇铸。
-- 任一缺失：写 Mold Gap，选择 `fanzhu-library`，进入制范。
-- 覆盖判断不确定：视为缺失，不用近似组件冒充。
+- 全部覆盖：`route=cast`，选择 `fanzhu-production`，进入浇铸。
+- 缺设计资产/API：`route=mold_making`，写 Mold Gap，选择 `fanzhu-library`，进入制范。
+- 缺权限、发布/订阅或字体：`route=owner_unblock`，写 Gap Report，停止等待 owner；不建替代资产。
+- 内容超量：`route=content_replan`，返回内容规划；不写 Gap。
+- 覆盖判断不确定：记录 `route=mold_making` 与原因，不用近似组件冒充。
 
 ## 2. 制范 Workflow
 
 1. Inspect：本地与 remote/library inventory；不能因本地 API 看不到就误判不存在。
-2. Choose one family：先写 Registry `Draft`，声明用途、API、容量、bindings、literals 与依赖。
+2. Choose one family：每次 mutation run 先写一个 Registry `Draft`，声明用途、API、容量、bindings、literals 与依赖。多个独立 family 可以并行至 `InReview`，但不得在同一次写入里混改。
 3. Build Main Component：复用 Foundations；复杂材质结构存在 Recipe Component 内。
 4. Expose API：text/boolean/variant/instance-swap/slots 必须覆盖生产需求；不可覆盖即 Component API Gap。
 5. Validate：真实中文 Instance、Auto Layout、bindings、Dark/Light geometry、局部与整页 evidence。
 6. Submit：机器 Gate 全过后 Codex 可自动提交 `InReview`。
 7. Human Review：明确 pass 才记录 `Approved`；拒绝则记录 `ChangesRequested` 和 Visual Review Record。
 8. Publish：生产文件必须能搜索并导入 component key；否则 readiness 仍 blocked。
+
+### Amendment
+
+对 Approved family 的小修创建 Amendment candidate，而不是把 base entry 改回 `Draft`。candidate 必须声明 base revision、delta scope 与受影响 Gate；Validate 与 Human Review 只审 delta 及其回归面。原 revision 保持可生产，直到 amendment 发布。
 
 ## 3. 浇铸 Workflow
 
@@ -38,12 +44,14 @@
 
 | 失败 | 产物 | 下一步 | 禁止 |
 |---|---|---|---|
-| Missing component / API / binding | Mold Gap | 返回制范 | 临时近似组件 |
-| 未发布、无权限、字体缺失 | Gap Report | 由 owner 解除 | 本地复制或静默换字体 |
+| 缺 Recipe / Template / slot / property / semantic Variable 或 Style | Mold Gap | 返回制范 | 临时近似组件 |
+| 未发布、未订阅、无权限、字体缺失 | Gap Report | 由 owner 解除后重新 Coverage | 本地复制或静默换字体 |
 | 内容超量 | 修订后的 Content Plan | 换模板、拆页或改文 | 缩小字号硬塞 |
 | Audit 失败 | Issue list + node IDs | 有界修复并复查 | 自动重建整页 |
 | Visual Gate 拒绝 | Visual Review Record | `ChangesRequested` 后返修 | 自动批准或用 Gap 代替 |
 | Deprecated | Migration Manifest | replacement 逐页迁移 | 删除旧范或强制回炉 |
+
+Coverage Report 是所有路由的强制产物。定期按缺口种类和频率回顾，将高频 Mold Gap 排入制范 backlog。
 
 ## 5. 三道门
 

@@ -17,6 +17,7 @@ Before any Figma action, load and follow `figma-use` and `figma-generate-design`
 - that profile's `interfaces/component-registry.yaml`
 - that profile's `interfaces/binding-policy.yaml`
 - that profile's `interfaces/readiness-gates.yaml`
+- that profile's Coverage Report for this request
 - that profile's Manifest example
 - `references/production-contract.md`
 
@@ -25,7 +26,7 @@ If no Project Profile is selected, stop before Figma mutation and request the pr
 ## Fixed workflow
 
 1. **Reference Brief**: translate inspiration into material, light, hierarchy, state, composition, content type and target constraints. Do not copy DOM, random CSS or screenshot pixels.
-2. **Coverage check**: map every required visual/layout grammar and content budget to Approved Registry entries. If any item is missing, write a Mold Gap and stop; do not switch into Mold Making inside the same run.
+2. **Coverage Report**: map every required visual/layout grammar and content budget to Approved Registry entries, then run `ruby scripts/validate-coverage-report.rb <coverage-report>`. Route only as follows: `cast` for complete coverage; `mold_making` + Mold Gap for a missing design asset/API; `owner_unblock` + Gap Report for permissions, Library access/publishing or font availability; `content_replan` for overflow. Do not switch into Mold Making inside the same run.
 3. **Content plan**: one conclusion per page; apply Chinese title/body/data budgets. Overflow means revise, split or switch template—never shrink type to force a fit.
 4. **Build Manifest**: target frame, size, mode, Approved template key/variant, Instances, slot content, variable/style keys and allowed literals.
 5. **Manifest Preflight**: run `ruby scripts/validate-manifest.rb <manifest> <registry> <policy>` from the repository root. It must pass before any Figma mutation.
@@ -42,6 +43,6 @@ If no Project Profile is selected, stop before Figma mutation and request the pr
 
 ## Output
 
-Return profile id, Reference Brief, coverage result, Manifest, dependency result, created Instance node IDs, audit issues, screenshots, gate state and Mold Gap if blocked. Never change a Registry status.
+Return profile id, Reference Brief, Coverage Report, Manifest, dependency result, created Instance node IDs, audit issues, screenshots, gate state and the correctly classified Mold Gap or Gap Report if blocked. Never change a Registry status.
 
 For a Deprecated mold, stop new production. Existing consumers migrate through its replacement and a Migration Manifest; keep the old instance until replacement, Audit and Screenshot pass.

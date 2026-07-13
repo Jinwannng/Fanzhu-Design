@@ -6,16 +6,18 @@
 
 ## 入口：灵感覆盖路由
 
-先把 Pinterest、Stitch、截图、网页或代码参考转成 Reference Brief：
+先把 Pinterest、Stitch、截图、网页或代码参考转成 Reference Brief，并写入 Coverage Report：
 
 - 视觉意图：光源、材质、边缘、层级、状态、构图。
 - 内容意图：信息类型、核心结论、中文长度、数据形态。
 - 生产约束：尺寸、比例、主题、目标文件、Project Profile。
 
-随后检查 Approved Registry：
+Coverage Report 必须逐项检查 Approved Registry，并输出单一 `route`：
 
-- Recipe + Template + content budget 全部覆盖 → 进入循环 B · 浇铸。
-- 缺视觉语法、结构、API、Variables/Styles、字体或 Library access → 输出 Mold Gap，进入循环 A · 制范。
+- `cast`：Recipe、Template、API、theme behavior 与 content budget 全部覆盖 → 进入循环 B · 浇铸。
+- `mold_making`：缺视觉语法、结构、slot/property 或需要新增 semantic Variable/Style → 输出 Mold Gap，进入循环 A · 制范。
+- `owner_unblock`：Library 发布/订阅、权限、字体或其他行政访问阻塞 → 输出 Gap Report，owner 解除后重新生成 Coverage Report。
+- `content_replan`：内容超出现有模板容量 → 修改内容计划、拆页或换 Template 后重新生成 Coverage Report。
 
 外部参考只提供意图，不直接进入 Registry。
 
@@ -24,7 +26,7 @@
 **入口**：Mold Gap、Project Profile、现有 Figma Foundations 与 Reference Brief。
 
 1. Preflight Inventory：检查 Variables、Modes、Styles、Components、linked/remote libraries、字体与命名冲突。
-2. 选择一个 family：Primitive、Recipe 或 Template；不得一次建设多个 family。
+2. 选择一个 family：Primitive、Recipe 或 Template。**一次 Figma mutation run 只改一个 family**，但多个独立 family 可以并行建设到 `InReview`。
 3. Foundations：复用或补齐 semantic Variables 与批准 Styles。
 4. Main Component：用 Auto Layout 和可复用内部结构构建唯一权威范。
 5. Component API：声明 variants、properties、slots、中文容量、required bindings、allowed literals 与 theme behavior。
@@ -34,6 +36,14 @@
 9. Publish：Approved key 与 screenshot 写入 Registry，并发布/开放 Library。
 
 出口：`Approved Mold Registry entry + accessible component key + approved screenshot`。
+
+### Amendment 快速路径
+
+已有 Approved family 的小修（例如新增 badge variant、暴露一个 slot、补一个 property）不重置原 entry。创建 linked Amendment candidate，记录 `base_revision`、`delta_scope`、受影响的 bindings 与 theme geometry；只为差异和受影响回归项生成证据。机器 Gate 与 Human Visual Gate 都必须通过，但人工 verdict 逐候选记录，不能用一次模糊的“都可以”代替。
+
+## 并行与审核
+
+Codex 可并行推进多个互不依赖的 family 至 `InReview`，前提是每个 mutation run、Registry entry、evidence 与 Amendment candidate 都独立。Human Visual Gate 是串行决策边界：可以在同一评审会话批量查看，但每个 family/candidate 必须有独立 verdict 与 Visual Review Record。
 
 ## 循环 B：浇铸
 
@@ -52,12 +62,15 @@
 
 ## 强制回流
 
-- Missing Mold / Component API / Variable / Style / Font / Library → Mold Gap → 停止当前铸件 → 制范。
+- 缺视觉语法、Component API、slot/property 或需要新增 Variable/Style → Mold Gap → 停止当前铸件 → 制范。
+- Library 未发布/未订阅、无权限、字体缺失 → Gap Report → 停止当前对象 → owner 解除后重新 Coverage。
 - 中文超出 slot budget → 换范、拆页或返回内容规划；禁止缩字硬塞。
 - Manifest Preflight 失败 → 不写 Figma。
 - Binding Audit 失败 → 只修定位节点，不自动重建整页。
 - Visual Gate 拒绝 → Visual Review Record → `ChangesRequested` → 同一 family 有界修改。
 - Deprecated → 新生产拒绝；旧实例通过 replacement + Migration Manifest 迁移。
+
+Coverage Report 定期按缺口种类与频率回顾。高频 `mold_making` 原因进入制范 backlog，减少未来慢路径；高频 `owner_unblock` 原因进入环境/readiness 改进，不误建设计资产。
 
 ## Project Profile 边界
 

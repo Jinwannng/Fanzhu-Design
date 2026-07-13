@@ -9,5 +9,6 @@
 - `interfaces/readiness-gates.yaml`：Production 硬阻塞、owner、pass conditions 与 evidence。
 - `interfaces/pilot-status.yaml`：当前 family 状态与下一步。
 - Manifest、Gap Report、Visual Review 示例。
+- Coverage Report：记录灵感覆盖、缺口分类、路由与高频缺口回顾数据。
 
 核心字段保持稳定；品牌名、Figma keys、component keys、variable/style names 和视觉值只存在于 Profile。新增项目不得复制 AEGIS 的实际 token 值或 component keys。

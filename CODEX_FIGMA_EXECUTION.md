@@ -20,22 +20,26 @@
 ## 制范固定顺序
 
 ```text
-Project Profile → Preflight Inventory → Registry Draft → One Component Family
+Project Profile → Coverage Report / Mold Gap → Preflight Inventory → Registry Draft or Amendment Candidate → One Component Family
 → Machine Gates → InReview → Evidence → Human Visual Gate
 → Approved + Publish，或 ChangesRequested → bounded revision → resubmit
 ```
 
 Codex 可以自动提交 `InReview`，不能自动决定 `Approved` 或 `ChangesRequested`。
 
+多个独立 family 可以并行到 `InReview`；每个 candidate 的人工 verdict、Visual Review Record 与发布决定必须独立。Amendment 只验证 delta 和受影响回归面，不将 base revision 退回 `Draft`。
+
 ## 浇铸固定顺序
 
 ```text
-Project Profile → Reference Brief → Coverage Check → Content Plan → Build Manifest
+Project Profile → Reference Brief → Coverage Report → Content Plan → Build Manifest
 → Manifest Preflight → Library Readiness → Approved Instances → Audit
 → Screenshots → Human Page Review → Theme / Output
 ```
 
 每次写操作返回 mutated node IDs。第一项通过后才批量同类对象。
+
+Coverage route 只允许四类：`cast`、`mold_making`、`owner_unblock`、`content_replan`。Mold Gap 仅用于设计资产/API缺口；Gap Report 仅用于权限、发布/订阅、字体等 owner 阻塞。
 
 ## Dark / Light
 

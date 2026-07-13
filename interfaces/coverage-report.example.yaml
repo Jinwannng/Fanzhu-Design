@@ -1,0 +1,32 @@
+schema_version: 1
+report_id: coverage-example-badge-001
+project_profile: private-example
+created_at: 2026-07-14
+
+reference:
+  source_type: screenshot
+  intent: A compact status badge with a semantic alert state.
+  target: {surface: deck, size: 1280x720, mode: Dark}
+
+requirements:
+  visual_grammar: [compact_badge, semantic_alert_state]
+  layout_grammar: [inline_metadata]
+  content_capacity: {label_zh: 8}
+  theme_behavior: dark_light_same_geometry
+
+coverage:
+  approved_molds: []
+  missing:
+    - kind: design_asset # design_asset | owner_access | content_capacity
+      item: Recipe / Status Badge
+      reason: No Approved Recipe exposes the required semantic alert state.
+
+decision:
+  route: mold_making # cast | mold_making | owner_unblock | content_replan
+  artifact: mold_gap # none | mold_gap | gap_report | content_replan
+  rationale: A reusable visual/API asset must be designed and approved.
+
+follow_up:
+  owner: fanzhu-library
+  next_action: Create one Status Badge family and record its API before production resumes.
+

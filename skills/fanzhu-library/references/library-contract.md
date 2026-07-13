@@ -5,5 +5,7 @@
 - Use the Profile's declared Library source and safe Pilot page.
 - Registry statuses: Draft → InReview → Approved, or InReview → ChangesRequested → InReview.
 - Every family needs a real Chinese Instance, machine Gate evidence and Dark/Light screenshots.
+- Amendment candidates link to an Approved base revision and validate only their declared delta plus affected regression surface.
+- Multiple independent families may be built in parallel, but every `InReview` item receives its own human verdict.
 - Codex may submit `InReview`; only a human verdict can produce `Approved` or `ChangesRequested`.
 - Never edit active production pages during Mold Making.

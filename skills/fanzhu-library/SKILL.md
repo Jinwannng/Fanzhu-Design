@@ -26,11 +26,11 @@ If no Project Profile is selected, stop before Figma mutation and request the pr
 
 1. **Confirm profile and target**: verify the profile's Library source and safe Pilot page. Never edit a production page while using this skill.
 2. **Preflight**: inspect local Variables/Styles/Components, then linked and remote libraries. Run `scripts/preflight-inventory.js` through `use_figma`; local API absence is not proof of remote absence.
-3. **Select one family**: create or update its Registry entry as `Draft`. Declare purpose, variants, properties, slots, Chinese budgets, dependencies, bindings, allowed literals, mode behavior and Code Ref.
+3. **Select one family**: create a Registry `Draft`, or a linked Amendment candidate for a small change to an Approved family. Declare purpose, variants, properties, slots, Chinese budgets, dependencies, bindings, allowed literals, mode behavior and Code Ref. An Amendment records base revision, delta scope and affected Gates; it never resets the base entry to `Draft`.
 4. **Search before build**: reuse profile foundations. Do not create synonymous tokens or duplicate Components.
 5. **Build Main Component**: use Auto Layout and semantic bindings. Multi-layer glass/chrome/noise/gradient geometry belongs in a Recipe Component, not page frames.
 6. **Expose API**: add only the text, boolean, variant and instance-swap properties required by casting. A deep slot that cannot be overridden is a Component API Gap.
-7. **Validate**: create a real Chinese test Instance; audit bindings, properties, variants, Auto Layout and Dark/Light geometry; capture local and full screenshots.
+7. **Validate**: create a real Chinese test Instance; audit bindings, properties, variants, Auto Layout and Dark/Light geometry; capture local and full screenshots. Amendments validate their delta plus affected regression surface, not an unrelated full-family rebuild.
 8. **Submit Visual Gate**: after machine gates and evidence pass, Codex may move `Draft` or `ChangesRequested` to `InReview`. Stop for human verdict. Record explicit pass as `Approved`; record explicit rejection as Visual Review Record + `ChangesRequested`. Never infer a verdict.
 9. **Publish**: casting requires accessible Library assets. If publication/subscription proof is unavailable, report a blocking dependency instead of copying components into production.
 
@@ -42,6 +42,7 @@ If no Project Profile is selected, stop before Figma mutation and request the pr
 - Allowed literals require exact Registry field, value and reason.
 - Never detach, silently replace a font, auto-approve, or delete a Deprecated mold with active consumers.
 - Keep Code Connect disabled until the selected Profile has a real product codebase and Storybook.
+- One mutation run changes one family/candidate. Multiple independent families may progress in parallel to `InReview`; each requires an independent human verdict and Visual Review Record.
 
 ## Output
 
