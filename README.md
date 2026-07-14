@@ -1,158 +1,122 @@
-# 范铸 Fànzhù — Figma × Codex Mold & Cast Pipeline
+# 范铸 Fànzhù — Mold & Cast Design Pipeline
 
-范铸是一套把**视觉灵感变成可复用 Figma 设计资产，再由 Codex 稳定生产页面**的工作流与工具包。它借用铸范法的流程结构作为产品隐喻：先制范，再浇铸；范未验收，不能投入生产。
+范铸是一套把视觉灵感、内容与设计系统转化为高质量 Figma 页面的方法。它适用于 Deck、Poster、Dashboard 等界面设计，也适用于深色/浅色主题的成套输出。
 
-它不属于某个品牌。AEGIS X 是第一个 Project Profile，用来验证这套管线能否生产 Deck、Poster、Dashboard 与 Dark/Light 版本。
+范铸借用“先制范、后浇铸”的工艺结构：先把可复用的视觉规则和页面模板做好，再用同一套范稳定生产页面。它不是一次性生成器，而是让第一次建设可复用、让后续生产更快更一致的设计管线。
 
 ## 1. 为什么需要范铸
 
-Pinterest、Stitch、网页截图和代码案例很适合找方向，却不能直接成为生产规范。灵感经过 Stitch、Figma、Codex 多次重新解释后，常见结果是结构漂移、页面级 hardcode、组件重复、材质失真、Variables 未绑定，以及 Dark/Light 版式分叉。
+灵感来源、草图工具和 AI 往往会分别解释同一个设计意图，容易产生版式漂移、重复造组件、样式 hardcode、主题不一致和大量人工返工。
 
-范铸把一次性的 prompt 结果改造成三个可持续对象：
-
-1. **范**：已批准的 Variables、Styles、Recipe Components 与 Template Components。
-2. **铸造计划**：机器可读的 Registry、Binding Policy 与 Build Manifest。
-3. **铸件**：只由 Approved Instances 组装、经过 Audit 与人工视觉确认的页面。
-
-因此它优化的不是“第一次就一键生成”，而是**先制范，再浇铸；第一次把范做好，第二次以后快速且稳定地复用**。
+范铸把设计过程拆成可复用的视觉资产、明确的内容接口和可验证的生产步骤，让人负责判断，AI 负责执行，Figma 保存最终设计真值。
 
 ## 2. 范铸能做什么
 
-- 把外部灵感拆成光源、材质、层级、状态、构图与内容容量，而不是复制随机像素。
-- 先生成 Coverage Report，判断当前 Approved 范是否足以表达该灵感，并留下可回看的覆盖证据。
-- 把复杂的 glass、chrome、glow、noise、data panel 等视觉语法封装为 Recipe Components。
-- 让 Codex 通过 Variables、Styles、variants、properties、Instance Swap 与 slots 生产页面。
-- 在写入前阻止错误计划，在写入后定位 detach、hardcode、错误 binding 与几何漂移。
-- 在同一设计语言下稳定扩展 Deck、Poster、Dashboard 与 Dark/Light 输出。
-
-它不能替代人的审美判断，也不能保证任意新视觉方向当天完成。没有 Approved 范的新方向必须先完成制范与人工 Visual Gate。
+- 从一张风格参考中提取色彩、字体、材质、光源、网格、层级和状态规则。
+- 将长文本切分为页面结论，并匹配合适的页面模板。
+- 将复杂视觉语法封装为 Recipe Components，将页面结构封装为 Template Components。
+- 通过 Variables、Styles、variants、properties 和 slots 组装页面。
+- 在写入前检查计划，在写入后检查复用、绑定、文字容量和几何一致性。
+- 使用同一套视觉范生产 Deck、Poster、Dashboard 和主题变体。
 
 ## 3. 核心模型
 
-范铸严格区分两个循环：
+范铸包含两个循环和一个覆盖判断：
 
-1. **循环 A · 制范（Mold Making）**：Reference Brief → Foundations → Main Component → Component API → Machine Gates → `InReview` → Human Visual Gate → Approved Mold Registry → 发布 Library。
-2. **循环 B · 浇铸（Casting）**：Content Plan → Build Manifest → Manifest Preflight → Library Readiness → Approved Instances → Slots/Properties → Audit → Screenshot → Output。
+1. **制范（Mold Making）**：Reference Brief → Foundations → Main Component → Component API → Machine Gates → `InReview` → Human Visual Gate → Approved Mold。
+2. **浇铸（Casting）**：Content Plan → Build Manifest → Manifest Preflight → Library Readiness → Approved Instances → Audit → Screenshot → Output。
+3. **覆盖判断（Coverage）**：先判断现有 Approved Mold 是否能表达目标；判断结果写入 Coverage Report。
 
-两个循环之间有一个必须留档的**灵感覆盖路由**：
+Coverage Report 只允许四种路由：
 
-- 现有 Approved Recipe 与 Template 能覆盖视觉意图和内容容量 → Coverage Report=`cast` → 直接进入浇铸。
-- 缺少视觉语法、模板结构、slot、property 或需要新增 semantic Variable/Style → **Mold Gap** → 返回制范。
-- 已有资产但缺 Library 发布/订阅、权限、字体或其他 owner 行政动作 → `owner_unblock` + **Gap Report** → 停止当前对象，等待 owner 解除；不进入制范。
-- 内容超出已批准范的容量 → **Content Replan** → 拆页、改内容或换 Template；不创建 Gap。
-- Production 不得顺手造范；制范也不得顺手生产正式页面。
+- `cast`：现有范完整覆盖，直接生产页面。
+- `mold_making`：缺少视觉资产、组件 API、slot、property 或设计 token，进入制范并生成 Mold Gap。
+- `owner_unblock`：缺少发布、订阅、权限或字体等外部条件，生成 Gap Report，等待条件解除。
+- `content_replan`：内容超过模板容量，返回内容规划，不修改组件。
 
-## 4. 从灵感到 Figma 的新工作流
+## 4. 从灵感到页面
 
 ```text
-灵感来源 + 已校对内容
-        ↓
-Reference Brief：提取意图，不复制实现
-        ↓
-Coverage Report：覆盖判断与缺口分类
-   ├─ cast → Build Manifest → 浇铸 → Audit → Visual Gate → 输出
-   ├─ mold_making → Mold Gap → 制范 → InReview → Human Visual Gate
-   │                       ├─ Approved → 发布 Library → 回到 Manifest
-   │                       └─ ChangesRequested → 有界修改 → 重新提交
-   ├─ owner_unblock → Gap Report → owner 解除后重新判断
-   └─ content_replan → 内容规划后重新判断
+灵感 + 内容
+   ↓
+Reference Brief
+   ↓
+Coverage Report
+   ├─ cast → Manifest → Instances → Audit → Screenshot → 页面
+   ├─ mold_making → Mold Gap → 制范 → Review → Approved → 回到 Manifest
+   ├─ owner_unblock → Gap Report → 条件解除 → 重新 Coverage
+   └─ content_replan → 拆页/改文/换模板 → 重新 Coverage
 ```
 
-“快速高质量”有两个明确档位：
-
-- **已覆盖的灵感**：主要工作是选择 Template、填充 slots、切换 variants 与 mode，可快速生产。
-- **未覆盖的新视觉方向**：第一轮有意变慢，因为必须先建设可复用范；批准后，同类页面才进入快速通道。
-
-详细步骤见 [`PIPELINE.md`](./PIPELINE.md) 与 [`WORKFLOW.md`](./WORKFLOW.md)。
+新视觉方向的第一轮需要先做范；一旦范通过审核，同类页面就可以快速浇铸。
 
 ## 5. 三道门与生命周期
 
 ### Reuse Gate
 
-可复用视觉结构必须来自 Approved Instance。普通 Frame 只能承担 Manifest 明确允许的页面容器或一次性内容几何；禁止 detach 与复制 Recipe 内部结构。
+可复用视觉结构必须来自 Approved Instance、Style 或 Component。禁止在生产页面复制或 detach 组件内部结构。
 
 ### Binding Gate
 
-颜色、间距、圆角、描边、透明度等使用 semantic Variables；完整 typography、shadow、blur 与 paint 组合使用 Styles；多层视觉语法使用 Components。Literal 必须同时被 Registry 与 Manifest 明确允许。
+颜色、间距、圆角、描边和透明度使用 Variables；完整字体、阴影、模糊和绘制组合使用 Styles；复杂材质和结构使用 Components。例外值必须登记。
 
 ### Visual Gate
 
-人负责判断材质克制、信息层级、中文排版、焦点与品牌感。机器 Gate 通过后 Codex 可以把 `Draft` 或 `ChangesRequested` 自动提交为 `InReview`，但只有人能给出 `pass` 或 `changes_requested`。Visual rejection 生成 Visual Review Record，不生成 Gap Report。
+人工确认层级、材质、排版、焦点和主题一致性。机器可以提交 `InReview`，不能代替人工批准。
 
-生命周期：`Draft → InReview → Approved`，或 `InReview → ChangesRequested → InReview`。`Deprecated` 禁止新铸件使用；已有铸件继续存在，按 replacement 与 Migration Manifest 渐进迁移。
+状态为 `Draft → InReview → Approved`，或 `InReview → ChangesRequested → InReview`。小修使用 Amendment candidate，只验证变更范围和受影响的回归面；旧版本在新版本发布前继续可用。
 
-小修不把已批准母版退回 `Draft`：为 Approved entry 新建独立的 **Amendment candidate**，声明 base revision、delta scope 与受影响的 Gate。它只验证新增 variant/property/slot 及受影响的 Dark/Light 几何；通过后发布为下一 revision，原 revision 保持可用直到迁移完成。
+## 6. 项目接口
 
-## 6. 工具与机器接口
+范铸通过以下接口让人和 AI 使用同一套规则：
 
-| 资产 | 用途 |
+| 接口 | 作用 |
 |---|---|
-| `fanzhu-library` | 制范：盘点 Foundations，建设/修改一个 Component Family，验证并提交人工审核。 |
-| `fanzhu-production` | 浇铸：路由灵感、验证 Manifest、实例化 Approved 范、Audit 与截图。 |
-| Component Registry | 记录每个范的 Figma key、API、内容容量、bindings、literals、状态与证据。 |
-| Binding Policy | 定义哪些属性必须使用 Variable、Style、Component 或 Allowed Literal。 |
-| Build Manifest | 在 Figma 写入前声明目标、模板、实例、内容、bindings 与允许例外。 |
-| Coverage Report | 记录灵感是否覆盖、使用哪些 Approved 范、缺什么以及应该走哪条路由。 |
-| Mold Gap | 只记录需要制范的设计资产/API缺口。 |
-| Gap Report | 只记录发布、订阅、权限、字体等 owner 行政/访问阻塞。 |
-| Visual Review Record | 记录人工视觉通过或具体返修意见。 |
-| Preflight / Audit scripts | 写前验证计划，写后定位实际节点问题；不自动重建整页。 |
-| `pipeline.drawio` | 中文可编辑流程图，展示覆盖路由、制范、浇铸与失败回流。 |
+| Component Registry | 记录范的组件、变体、属性、slots、内容容量和状态。 |
+| Binding Policy | 规定属性应使用 Variable、Style、Component 或允许的固定值。 |
+| Coverage Report | 记录覆盖判断、缺口分类和下一步路由。 |
+| Build Manifest | 在写入 Figma 前声明目标、模板、实例、内容和绑定。 |
+| Mold Gap | 记录需要建设的设计资产或 API。 |
+| Gap Report | 记录权限、发布、订阅和字体等外部阻塞。 |
+| Visual Review Record | 记录人工视觉审核与返修意见。 |
 
-Figma 是当前设计 SSOT。HTML/CSS Gallery 只是 Recipe 的可读实现参考，不与 Figma 双向同步。没有真实产品代码库与 Storybook 时不启用 Code Connect。
+## 7. 项目扩展
 
-## 7. Project Profile
+范铸核心不绑定品牌。不同项目可以提供自己的 Variables、Styles、Recipes、Templates、Registry 和 Code Reference，并复用同一套状态机、校验器和生产技能。
 
-通用管线不保存任何品牌值。每个项目在 `projects/<project-id>/` 中提供自己的：
+## 8. 使用环境
 
-- Figma Library source 与 Production targets
-- Variables、Styles 与 Visual Recipes
-- Component Registry、Binding Policy 与 Readiness Gates
-- Manifest / Gap / Visual Review 示例
-- Code Reference Gallery、批准截图与 Pilot 状态
-
-项目 Profile 可以存在于本机或私有项目仓库中；公开范铸核心不包含任何真实 Figma file key、node URL、品牌 token 或个人环境路径。新增项目应复制接口结构和状态机，而不是复制其他项目的视觉值。
-
-## 8. 运行环境
-
-必需环境：macOS、Codex Desktop、Figma 文件权限、Figma MCP、`figma-use`、`figma-generate-library`、`figma-generate-design`。Figma Slides 额外加载 Slides skill；流程图导出需要 Draw.io Desktop CLI。
-
-本仓库只记录可移植的相对路径。Canonical、WIP mirror 与 Skills 安装位置由每台机器自行配置，不写入公开文档。
+常见环境包括 Figma、Codex、Figma MCP、Variables/Styles、Draw.io，以及用于页面组装和审计的项目技能。具体工具由项目自行选择；范铸核心只依赖清晰的输入、批准的设计资产和可验证的输出。
 
 ## 9. 人如何使用
 
-给出灵感、已校对内容、目标尺寸、目标 Figma 文件与 Project Profile。先审阅 Reference Brief 和覆盖判断：如果走制范，一次只批准一个 family；如果走浇铸，先批准第一张代表页面，再批量同类页面。人始终保留 Visual Gate 与 Library 发布/订阅权限。
+提供三项输入：
+
+1. SSOT 文本或内容计划。
+2. 一张或多张风格参考。
+3. 输出尺寸、主题和页面类型。
+
+先审核 Reference Brief、Coverage Report 和三张代表页；代表页通过后，再批量生成同类页面。
 
 ## 10. AI 如何开始
 
-AI 固定读取顺序：
+AI 应先读取项目规则，生成 Reference Brief 和 Coverage Report，再选择制范或浇铸技能。生产写入前必须通过 Coverage、Manifest 和依赖检查；失败时停止当前对象并输出对应报告，不创建近似替代品。
 
-1. 根目录 `README.md`、`PIPELINE.md`、`WORKFLOW.md`。
-2. 目标 Project Profile 的 `README.md`、`pilot-status.yaml`、`readiness-gates.yaml`、`component-registry.yaml`、`binding-policy.yaml`。
-3. 输出并校验 Coverage Report，再按 `cast` / `mold_making` / `owner_unblock` / `content_replan` 路由。
-4. 制范调用 `fanzhu-library`；浇铸调用 `fanzhu-production`。
+## 11. 公开发布内容
 
-修改核心文档或接口后运行 `ruby scripts/check-readme-structure.rb --self-test`。Production 写入前先运行 `ruby scripts/validate-coverage-report.rb <coverage-report>`，再运行 `ruby scripts/validate-manifest.rb <manifest> <registry> <policy>`；任一失败时禁止调用 Figma 写工具。
+本仓库公开的是范铸的通用方法、接口示例、校验脚本、技能规范和流程图。品牌专属 token、设计文件标识、内部截图、凭据和机器配置应由使用者自行保管，不属于公共项目说明。
 
-## 11. 公开发布边界
+## 12. 后续方向
 
-本公开仓库只包含范铸的通用协议、脱敏接口、skills、校验脚本与流程图。真实项目的 Figma URLs、file keys、node IDs、Variables、批准截图、内部状态与本机路径必须放在私有 Project Profile 中；不要把 API key、token、私钥、密码或本机配置上传到这里。
-
-## 12. 下一步
-
-P0：为每个私有 Project Profile 完成 Library、Variables、Registry 与 Visual Gate readiness；定期回顾 Coverage Report 的高频 Mold Gap。
-
-P1：逐个制范，每个 family 完成 API、内容容量、Dark/Light、机器 Gate、人工 Visual Gate 与 Approved Registry。
-
-P2：用私有 Profile 的真实页面跑通第一次浇铸：Reference Brief → Coverage → Manifest → Preflight → Instances → Audit → Screenshot。
-
-P3：用第二个视觉项目验证 Project Profile 的可移植性。
+- 为常见页面类型积累 Approved Mold。
+- 回顾 Coverage Report，优先补齐高频缺口。
+- 用多个不同项目验证范铸的可移植性。
+- 在存在真实产品代码库后，再评估 Code Connect。
 
 ## 13. 非目标
 
 - 不承诺任意新视觉方向一键完成。
-- 不让 Stitch 或参考网页直接决定 Figma 页面结构。
-- 不让 Codex 在 Production 临时发明组件或近似替代品。
-- 不把 Pinterest、截图或外部 CSS 直接登记成 Approved 范。
-- 不把 Deck 几何缩放成 Dashboard Template。
-- 不在没有真实产品代码库时引入 Code Connect 或复杂双向 Token 同步。
+- 不让参考网页或草图工具直接决定最终页面结构。
+- 不让 AI 在生产阶段临时发明组件。
+- 不把外部截图或 CSS 直接登记为 Approved Mold。
+- 不用复杂的双向 token 同步增加维护成本。
