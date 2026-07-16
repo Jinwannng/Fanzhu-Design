@@ -13,6 +13,7 @@
 ## 2. 范铸能做什么
 
 - 从一张风格参考中提取色彩、字体、材质、光源、网格、层级和状态规则。
+- 先明确受众、唯一任务、事实依据与信息关系，再决定页面类型和视觉方向。
 - 将长文本切分为页面结论，并匹配合适的页面模板。
 - 将复杂视觉语法封装为 Recipe Components，将页面结构封装为 Template Components。
 - 通过 Variables、Styles、variants、properties 和 slots 组装页面。
@@ -21,11 +22,20 @@
 
 ## 3. 核心模型
 
-范铸包含两个循环和一个覆盖判断：
+范铸包含一个前置定调、两个循环和一个覆盖判断：
 
-1. **制范（Mold Making）**：Reference Brief → Foundations → Main Component → Component API → Machine Gates → `InReview` → Human Visual Gate → Approved Mold。
-2. **浇铸（Casting）**：Content Plan → Build Manifest → Manifest Preflight → Library Readiness → Approved Instances → Audit → Screenshot → Output。
-3. **覆盖判断（Coverage）**：先判断现有 Approved Mold 是否能表达目标；判断结果写入 Coverage Report。
+1. **定调（Art Direction）**：内容 SSOT + 风格参考 → 主题判断 → 视觉命题 → Signature → Reference Brief。
+2. **制范（Mold Making）**：Reference Brief → Foundations → Main Component → Component API → Machine Gates → `InReview` → Human Visual Gate → Approved Mold。
+3. **浇铸（Casting）**：Content Plan → Build Manifest → Manifest Preflight → Library Readiness → Approved Instances → Audit → Screenshot → Output。
+4. **覆盖判断（Coverage）**：先判断现有 Approved Mold 是否能表达目标；判断结果写入 Coverage Report。
+
+范铸只保留三类 Design Declarations：
+
+- **Intent Brief**：主题、受众、唯一任务、核心结论、事实、领域语义与非目标。
+- **Design Direction**：信息关系、视觉命题、字体/色彩角色、材质职责、Signature 与克制边界。
+- **Asset Contract**：Registry、Binding Policy、Variables、Styles、Recipes 与 Templates 的语义和实现边界。
+
+前两类合并保存在 Reference Brief，避免多份文本重复解释；第三类由既有设计系统接口共同承担。Skills 是执行契约，只负责在正确时机读取、生成和检查这些声明，不另起一套审美规则。
 
 Coverage Report 只允许四种路由：
 
@@ -37,9 +47,9 @@ Coverage Report 只允许四种路由：
 ## 4. 从灵感到页面
 
 ```text
-灵感 + 内容
+内容 SSOT + 风格参考
    ↓
-Reference Brief
+定调：目的 → 信息结构 → 视觉命题 → Signature → Reference Brief
    ↓
 Coverage Report
    ├─ cast → Manifest → Instances → Audit → Screenshot → 页面
@@ -62,7 +72,9 @@ Coverage Report
 
 ### Visual Gate
 
-人工确认层级、材质、排版、焦点和主题一致性。机器可以提交 `InReview`，不能代替人工批准。
+先按 Cover、Narrative、Compare、Data、Dashboard 等 page type 选择正确评审重点，再由人工确认 Product Intent、Trust & Domain Fit、Information Architecture、适用的 Interaction Readiness、System Craft 和 Visual & Brand Expression。它们用于定位问题，不计算自动批准分数。
+
+Review Finding 必须记录证据、是否阻断、责任接口、回流步骤和所需修改。内容错误、结构错配、错误组件语义、detach、未授权 literal 或关键状态缺失属于阻断问题，不能被整体视觉评价抵消。机器可以提交 `InReview`，不能代替人工批准。
 
 状态为 `Draft → InReview → Approved`，或 `InReview → ChangesRequested → InReview`。小修使用 Amendment candidate，只验证变更范围和受影响的回归面；旧版本在新版本发布前继续可用。
 
@@ -72,13 +84,17 @@ Coverage Report
 
 | 接口 | 作用 |
 |---|---|
+| Design Principles | 定义目的、结构、视觉工艺、组件语义、评审镜头与回流原则。 |
+| Reference Brief | 合并 Intent Brief 与 Design Direction，并记录人工接受状态。 |
 | Component Registry | 记录范的组件、变体、属性、slots、内容容量和状态。 |
 | Binding Policy | 规定属性应使用 Variable、Style、Component 或允许的固定值。 |
 | Coverage Report | 记录覆盖判断、缺口分类和下一步路由。 |
 | Build Manifest | 在写入 Figma 前声明目标、模板、实例、内容和绑定。 |
 | Mold Gap | 记录需要建设的设计资产或 API。 |
 | Gap Report | 记录权限、发布、订阅和字体等外部阻塞。 |
-| Visual Review Record | 记录人工视觉审核与返修意见。 |
+| Visual Review Record | 记录证据、阻断项、责任接口、回流步骤与人工 verdict。 |
+
+Reference Brief 与 Visual Review Record 分别由 `validate-reference-brief.rb` 和 `validate-review-record.rb` 做结构校验；校验只保证判断可执行、可追踪，不替人做审美决定。
 
 ## 7. 项目扩展
 
@@ -96,11 +112,11 @@ Coverage Report
 2. 一张或多张风格参考。
 3. 输出尺寸、主题和页面类型。
 
-先审核 Reference Brief、Coverage Report 和三张代表页；代表页通过后，再批量生成同类页面。
+先审核 Reference Brief 的目的、信息结构与视觉方向，再审核 Coverage Report 和三张代表页；代表页通过后，再批量生成同类页面。
 
 ## 10. AI 如何开始
 
-AI 应先读取项目规则，生成 Reference Brief 和 Coverage Report，再选择制范或浇铸技能。生产写入前必须通过 Coverage、Manifest 和依赖检查；失败时停止当前对象并输出对应报告，不创建近似替代品。
+AI 应先读取 Design Principles 与项目规则，使用 `fanzhu-art-direction` 生成 Reference Brief。Reference Brief 结构校验且由人接受后，才生成 Coverage Report，并据此选择制范或浇铸：`fanzhu-library` 或 `fanzhu-production`。生产写入前必须通过 Coverage、Manifest 和依赖检查；失败时停止当前对象，将问题回到明确的声明或执行接口，不创建近似替代品。
 
 ## 11. 公开发布内容
 

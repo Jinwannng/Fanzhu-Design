@@ -1,5 +1,5 @@
 interface:
   display_name: "范铸 · 浇铸"
-  short_description: "Cast approved Figma molds into production pages"
+  short_description: "Cast accepted design briefs with approved Figma molds"
   brand_color: "#2F756D"
-  default_prompt: "Use $fanzhu-production to route this inspiration, validate the manifest, and cast Approved Figma instances into the target page."
+  default_prompt: "Use $fanzhu-production to validate this Accepted Reference Brief, route Coverage, and cast Approved Figma instances into the target page."

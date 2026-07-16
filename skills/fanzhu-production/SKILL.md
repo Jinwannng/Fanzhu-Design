@@ -1,6 +1,6 @@
 ---
 name: fanzhu-production
-description: Route visual inspiration and assemble Deck, Dashboard, Poster and themed Figma pages from Approved Registry molds. Use for Reference Briefs, coverage checks, content slicing, manifests, instances, slot overrides, audits and Dark/Light production; do not invent or author design-system components.
+description: Route an accepted Fanzhu Reference Brief and assemble Deck, Dashboard, Poster and themed Figma pages from Approved Registry molds. Use for coverage checks, content slicing, manifests, instances, slot overrides, audits and Dark/Light production; use fanzhu-art-direction first when the visual direction is not yet defined, and do not invent or author design-system components.
 ---
 
 # 范铸 · 浇铸
@@ -13,7 +13,9 @@ Before any Figma action, load and follow `figma-use` and `figma-generate-design`
 
 - repository-root `README.md`
 - repository-root `WORKFLOW.md`
+- repository-root `DESIGN_PRINCIPLES.md`
 - the selected `projects/<project-id>/README.md`
+- the accepted Reference Brief for this request
 - that profile's `interfaces/component-registry.yaml`
 - that profile's `interfaces/binding-policy.yaml`
 - that profile's `interfaces/readiness-gates.yaml`
@@ -25,24 +27,24 @@ If no Project Profile is selected, stop before Figma mutation and request the pr
 
 ## Fixed workflow
 
-1. **Reference Brief**: translate inspiration into material, light, hierarchy, state, composition, content type and target constraints. Do not copy DOM, random CSS or screenshot pixels.
-2. **Coverage Report**: map every required visual/layout grammar and content budget to Approved Registry entries, then run `ruby scripts/validate-coverage-report.rb <coverage-report>`. Route only as follows: `cast` for complete coverage; `mold_making` + Mold Gap for a missing design asset/API; `owner_unblock` + Gap Report for permissions, Library access/publishing or font availability; `content_replan` for overflow. Do not switch into Mold Making inside the same run.
-3. **Content plan**: one conclusion per page; apply Chinese title/body/data budgets. Overflow means revise, split or switch template—never shrink type to force a fit.
+1. **Confirm declarations**: run `ruby scripts/validate-reference-brief.rb <brief> --require-accepted`. Require a clear single job, information relationship, page types, facts/unknowns, design responsibilities and empty open decisions. Otherwise stop before Coverage and return to Art Direction.
+2. **Coverage Report**: map every required visual/layout grammar, component semantic and content budget to Approved Registry entries, then run `ruby scripts/validate-coverage-report.rb <coverage-report>`. Route only as follows: `cast` for complete coverage; `mold_making` + Mold Gap for a missing design asset/API; `owner_unblock` + Gap Report for permissions, Library access/publishing or font availability; `content_replan` for overflow. Do not switch into Mold Making inside the same run.
+3. **Content plan**: one conclusion per page; preserve facts, sources, time windows, unknowns and the declared information relationship; apply Chinese title/body/data budgets. Overflow means revise, split or switch template—never shrink type to force a fit.
 4. **Build Manifest**: target frame, size, mode, Approved template key/variant, Instances, slot content, variable/style keys and allowed literals.
 5. **Manifest Preflight**: run `ruby scripts/validate-manifest.rb <manifest> <registry> <policy>` from the repository root. It must pass before any Figma mutation.
 6. **Check readiness**: require the Profile's Library Distribution gate, then search local, linked and remote assets. Reject Draft, InReview, ChangesRequested and Deprecated entries.
-7. **Assemble**: import and instantiate Approved components. Use variants, `setProperties`, Instance Swap and slots. Never detach. Ordinary Frames are limited to Manifest-declared page containers and one-off content geometry.
+7. **Assemble**: import and instantiate Approved components whose semantic roles match the Manifest. Use variants, `setProperties`, Instance Swap and slots. Never detach. Ordinary Frames are limited to Manifest-declared page containers and one-off content geometry.
 8. **Audit**: run `scripts/audit-bindings.js` against each target. Fix only reported nodes; do not rebuild the full page.
-9. **Screenshot and theme**: inspect the first page of each template type locally and full-frame. Human review precedes batch production. Dark/Light switches mode and approved assets while geometry stays frozen.
+9. **Screenshot and review**: inspect the first page of each template type locally and full-frame. Review the real artifact using its page-type priorities across Product Intent, Trust & Domain Fit, Information Architecture, applicable Interaction Readiness, System Craft and Visual & Brand Expression. Each finding records evidence, blocking, owner interface, return step and required change; run `ruby scripts/validate-review-record.rb <review-record>`. Human review precedes batch production. Dark/Light switches mode and approved assets while geometry stays frozen.
 
 ## Three gates
 
 - **Reuse**: reusable visual structures are Approved Instances.
 - **Binding**: no unauthorized literals or detached/local copies; all exceptions are declared.
-- **Visual**: human confirms hierarchy, material restraint, Chinese layout and Dark/Light geometry.
+- **Visual**: human uses the page-type lens to confirm intent, trust, hierarchy, semantic component use, material restraint, Chinese layout, brand expression and Dark/Light geometry. Blocking findings cannot be averaged away.
 
 ## Output
 
-Return profile id, Reference Brief, Coverage Report, Manifest, dependency result, created Instance node IDs, audit issues, screenshots, gate state and the correctly classified Mold Gap or Gap Report if blocked. Never change a Registry status.
+Return profile id, Reference Brief, Coverage Report, Manifest, dependency result, created Instance node IDs, audit issues, screenshots, structured Review Findings, gate state and the correctly classified Mold Gap or Gap Report if blocked. Never change a Registry status.
 
 For a Deprecated mold, stop new production. Existing consumers migrate through its replacement and a Migration Manifest; keep the old instance until replacement, Audit and Screenshot pass.

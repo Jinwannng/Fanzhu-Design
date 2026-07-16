@@ -1,5 +1,14 @@
 # 范铸 Codex + Figma 执行规范
 
+## 设计声明与执行契约
+
+- `DESIGN_PRINCIPLES.md` 定义通用设计判断。
+- Reference Brief 合并 Intent Brief 与 Design Direction。
+- Registry、Binding Policy、Variables、Styles、Recipes 和 Templates 共同构成 Asset Contract。
+- Skills、validators 与 audits 是 Execution Contracts；它们调度和检查声明，不重新发明标准。
+
+固定 Design I/O：`Intent → Information Architecture → Design Direction → Coverage → Mold Making or Casting → Evidence → Review → Directed Return`。
+
 ## 工具职责
 
 - metadata / screenshot：理解结构与视觉真值。
@@ -20,7 +29,7 @@
 ## 制范固定顺序
 
 ```text
-Project Profile → Coverage Report / Mold Gap → Preflight Inventory → Registry Draft or Amendment Candidate → One Component Family
+Project Profile → Accepted Reference Brief → Coverage Report / Mold Gap → Preflight Inventory → Registry Draft or Amendment Candidate → One Component Family
 → Machine Gates → InReview → Evidence → Human Visual Gate
 → Approved + Publish，或 ChangesRequested → bounded revision → resubmit
 ```
@@ -32,7 +41,7 @@ Codex 可以自动提交 `InReview`，不能自动决定 `Approved` 或 `Changes
 ## 浇铸固定顺序
 
 ```text
-Project Profile → Reference Brief → Coverage Report → Content Plan → Build Manifest
+Project Profile → Validated + Accepted Reference Brief → Coverage Report → Content Plan → Build Manifest
 → Manifest Preflight → Library Readiness → Approved Instances → Audit
 → Screenshots → Human Page Review → Theme / Output
 ```
@@ -49,10 +58,15 @@ Coverage route 只允许四类：`cast`、`mold_making`、`owner_unblock`、`con
 
 ## 写前与写后校验
 
+- 定调后：`validate-reference-brief.rb` 检查目的、信息结构、设计方向和 handoff；Production 要求 `--require-accepted`。
 - 写前：Manifest 必须通过 Registry status/key、required bindings、content budget、allowed literals 与 readiness 检查。
 - 写后：Audit 检查实际 nodes 的 instance provenance、bindings、literal、Auto Layout、absolute exceptions 与 Dark/Light geometry。
 - 两者不可互相替代；任一失败都停止当前对象。
 
+## Review Finding
+
+Review 面对真实截图、结构、内容与数据证据，而不是 Agent 对自身意图的描述。先按 page type 选择评审重点，再记录 `evidence`、`blocking`、`owner_interface`、`return_step` 和 `required_change`，并运行 `validate-review-record.rb`。阻断问题优先于整体评价；Visual verdict 仍由人决定。
+
 ## Project Profile 约束
 
-所有 Figma file keys、variables、recipes、fonts、registry 与 readiness 均从选定 Profile 读取。核心 skill 不得硬编码 AEGIS X 或任何其他品牌值。
+所有 Figma file keys、variables、recipes、fonts、registry 与 readiness 均从选定 Profile 读取。核心 skill 不得硬编码任何品牌值。

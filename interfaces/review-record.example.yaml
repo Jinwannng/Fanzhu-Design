@@ -1,0 +1,23 @@
+schema_version: 1
+review_id: review-example-001
+target: example-frame
+page_type: data
+verdict: ChangesRequested # Approved | ChangesRequested
+
+evidence:
+  screenshots: [local, full_frame]
+  structural: [manifest, binding_audit]
+  semantic: [content_ssot, data_source, time_window]
+
+findings:
+  - dimension: Trust & Domain Fit
+    summary: The chart supports the claim but does not expose its time window.
+    evidence: The source label is present; the date range is absent in the rendered frame.
+    blocking: true
+    owner_interface: reference_brief.intent
+    return_step: content_replan
+    required_change: Add the approved time window to the source slot without changing chart geometry.
+
+decision:
+  human_owner: design-owner
+  decided_at: 2026-07-16

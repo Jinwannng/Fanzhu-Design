@@ -4,6 +4,8 @@ project_profile: private-example
 created_at: 2026-07-14
 
 reference:
+  brief_id: reference-example-001
+  status: Accepted
   source_type: screenshot
   intent: A compact status badge with a semantic alert state.
   target: {surface: deck, size: 1280x720, mode: Dark}
@@ -29,4 +31,3 @@ decision:
 follow_up:
   owner: fanzhu-library
   next_action: Create one Status Badge family and record its API before production resumes.
-

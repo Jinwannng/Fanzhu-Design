@@ -13,20 +13,20 @@
           <mxGeometry x="360" y="85" width="1080" height="35" as="geometry" />
         </mxCell>
 
-        <mxCell id="4" value="灵感来源 + 已校对内容&#xa;Pinterest · Stitch · 截图 · 网页 · Code Ref" style="rounded=1;arcSize=16;whiteSpace=wrap;html=1;fillColor=#EFE3D3;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=15;fontStyle=1;fontColor=#3E2A1C;" vertex="1" parent="1">
+        <mxCell id="4" value="内容 SSOT + 风格参考&#xa;事实 · 来源 · 不确定项 · 输出约束" style="rounded=1;arcSize=16;whiteSpace=wrap;html=1;fillColor=#EFE3D3;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=15;fontStyle=1;fontColor=#3E2A1C;" vertex="1" parent="1">
           <mxGeometry x="640" y="140" width="520" height="75" as="geometry" />
         </mxCell>
-        <mxCell id="5" value="Reference Brief&#xa;提取光源、材质、层级、状态、构图、内容容量与生产约束" style="rounded=1;arcSize=16;whiteSpace=wrap;html=1;fillColor=#FFFDF9;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=15;fontColor=#3E2A1C;" vertex="1" parent="1">
+        <mxCell id="5" value="Reference Brief · Accepted&#xa;Intent → Information Architecture → Design Direction" style="rounded=1;arcSize=16;whiteSpace=wrap;html=1;fillColor=#FFFDF9;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=15;fontColor=#3E2A1C;" vertex="1" parent="1">
           <mxGeometry x="640" y="250" width="520" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="6" value="Approved 范是否完整覆盖？&#xa;视觉语法 + 模板结构 + API + 中文容量" style="rhombus;whiteSpace=wrap;html=1;fillColor=#F6D9A9;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontStyle=1;fontColor=#3E2A1C;" vertex="1" parent="1">
+        <mxCell id="6" value="Approved 范是否完整覆盖？&#xa;Visual / Layout Grammar · Component Semantics · Capacity" style="rhombus;whiteSpace=wrap;html=1;fillColor=#F6D9A9;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontStyle=1;fontColor=#3E2A1C;" vertex="1" parent="1">
           <mxGeometry x="650" y="370" width="500" height="120" as="geometry" />
         </mxCell>
 
         <mxCell id="10" value="循环 A · 制范 Mold Making&#xa;慢在第一次：建立权威母版、API 与视觉证据" style="swimlane;startSize=62;rounded=1;arcSize=12;horizontal=1;whiteSpace=wrap;html=1;fillColor=#F3E7D7;swimlaneFillColor=#FFFCF7;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=18;fontStyle=1;fontColor=#4A2F1B;container=1;pointerEvents=0;" vertex="1" parent="1">
           <mxGeometry x="60" y="540" width="800" height="850" as="geometry" />
         </mxCell>
-        <mxCell id="11" value="Mold Gap + Project Profile&#xa;缺少 Recipe / Template / Slot / Variable / Font / Library" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#B85450;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontStyle=1;fontColor=#6B2925;" vertex="1" parent="10">
+        <mxCell id="11" value="Mold Gap + Accepted Reference Brief&#xa;缺 Recipe / Template / Slot / Variable / Component Semantics" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#B85450;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontStyle=1;fontColor=#6B2925;" vertex="1" parent="10">
           <mxGeometry x="70" y="90" width="660" height="70" as="geometry" />
         </mxCell>
         <mxCell id="12" value="Preflight Inventory&#xa;Variables · Styles · Components · Remote Libraries · Fonts" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFF9F0;strokeColor=#B8844F;fontFamily=PingFang SC;fontSize=14;fontColor=#493525;" vertex="1" parent="10">
@@ -35,16 +35,16 @@
         <mxCell id="13" value="一次只制一个范&#xa;Primitive → Recipe → Template" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FFF9F0;strokeColor=#B8844F;fontFamily=PingFang SC;fontSize=14;fontColor=#493525;" vertex="1" parent="10">
           <mxGeometry x="430" y="190" width="300" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="14" value="Foundations + Main Component + Component API&#xa;Auto Layout · Variables/Styles · Variants · Properties · Slots" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#F3E1C8;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontStyle=1;fontColor=#3E2A1C;" vertex="1" parent="10">
+        <mxCell id="14" value="Foundations + Main Component + Semantic API&#xa;Role · Correct/Misuse · States · Variables/Styles · Properties · Slots" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#F3E1C8;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontStyle=1;fontColor=#3E2A1C;" vertex="1" parent="10">
           <mxGeometry x="70" y="300" width="660" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="15" value="Machine Gates + Evidence&#xa;Reuse · Binding · API · Auto Layout · Dark/Light Geometry · 中文 Instance" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FFF9F0;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontColor=#3E2A1C;" vertex="1" parent="10">
+        <mxCell id="15" value="Machine Gates + Evidence&#xa;Semantic Use · Reuse · Binding · API · Auto Layout · Dark/Light · 中文 Instance" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FFF9F0;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontColor=#3E2A1C;" vertex="1" parent="10">
           <mxGeometry x="70" y="420" width="660" height="80" as="geometry" />
         </mxCell>
         <mxCell id="16" value="Codex 提交 InReview&#xa;允许自动提交，不允许自动批准或拒绝" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#F6D9A9;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontStyle=1;fontColor=#3E2A1C;" vertex="1" parent="10">
           <mxGeometry x="70" y="540" width="300" height="78" as="geometry" />
         </mxCell>
-        <mxCell id="17" value="Human Visual Gate&#xa;材质 · 层级 · 中文 · 焦点 · 品牌感" style="rhombus;whiteSpace=wrap;html=1;fillColor=#F6D9A9;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=13;fontStyle=1;fontColor=#3E2A1C;" vertex="1" parent="10">
+        <mxCell id="17" value="Human Visual Gate&#xa;Intent · Trust · IA · Craft · Brand" style="rhombus;whiteSpace=wrap;html=1;fillColor=#F6D9A9;strokeColor=#9A6735;strokeWidth=2;fontFamily=PingFang SC;fontSize=13;fontStyle=1;fontColor=#3E2A1C;" vertex="1" parent="10">
           <mxGeometry x="430" y="525" width="300" height="108" as="geometry" />
         </mxCell>
         <mxCell id="18" value="ChangesRequested&#xa;Visual Review Record&#xa;只改被点名属性" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#B85450;strokeWidth=2;fontFamily=PingFang SC;fontSize=13;fontColor=#6B2925;" vertex="1" parent="10">
@@ -60,7 +60,7 @@
         <mxCell id="30" value="循环 B · 浇铸 Casting&#xa;快在复用：只消费已批准的范，不在现场改模" style="swimlane;startSize=62;rounded=1;arcSize=12;horizontal=1;whiteSpace=wrap;html=1;fillColor=#DDECE8;swimlaneFillColor=#FBFEFD;strokeColor=#2F756D;strokeWidth=2;fontFamily=PingFang SC;fontSize=18;fontStyle=1;fontColor=#18483F;container=1;pointerEvents=0;" vertex="1" parent="1">
           <mxGeometry x="940" y="540" width="800" height="850" as="geometry" />
         </mxCell>
-        <mxCell id="31" value="Content Plan + 选择 Approved Template&#xa;每页一个结论 · 校对数据 · 中文预算" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#EAF5F2;strokeColor=#2F756D;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontColor=#18483F;" vertex="1" parent="30">
+        <mxCell id="31" value="Content Plan + 选择语义匹配的 Approved Template&#xa;每页一个结论 · 事实/来源/时间窗 · 中文预算" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#EAF5F2;strokeColor=#2F756D;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontColor=#18483F;" vertex="1" parent="30">
           <mxGeometry x="70" y="90" width="660" height="70" as="geometry" />
         </mxCell>
         <mxCell id="32" value="Build Manifest&#xa;Target · Mode · Template Key · Instances · Slots · Bindings · Literals" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#EAF5F2;strokeColor=#2F756D;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontColor=#18483F;" vertex="1" parent="30">
@@ -75,10 +75,10 @@
         <mxCell id="35" value="Assemble Approved Instances&#xa;Variants · setProperties · Instance Swap · Slots · 禁止 detach" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#DDECE8;strokeColor=#2F756D;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontStyle=1;fontColor=#18483F;" vertex="1" parent="30">
           <mxGeometry x="70" y="585" width="660" height="75" as="geometry" />
         </mxCell>
-        <mxCell id="36" value="Binding Audit + Screenshots&#xa;Instance provenance · hardcode · binding · geometry · local / full frame" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#EAF5F2;strokeColor=#2F756D;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontColor=#18483F;" vertex="1" parent="30">
+        <mxCell id="36" value="Evidence + Audit + Screenshots&#xa;Provenance · Semantics · Binding · Geometry · Content Truth · local/full" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#EAF5F2;strokeColor=#2F756D;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontColor=#18483F;" vertex="1" parent="30">
           <mxGeometry x="70" y="700" width="400" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="37" value="Human Page Review&#xa;通过后批量" style="rhombus;whiteSpace=wrap;html=1;fillColor=#CFE6E0;strokeColor=#2F756D;strokeWidth=2;fontFamily=PingFang SC;fontSize=12;fontStyle=1;fontColor=#18483F;" vertex="1" parent="30">
+        <mxCell id="37" value="Human Page Review&#xa;Page-type Lens · Blocking First" style="rhombus;whiteSpace=wrap;html=1;fillColor=#CFE6E0;strokeColor=#2F756D;strokeWidth=2;fontFamily=PingFang SC;fontSize=12;fontStyle=1;fontColor=#18483F;" vertex="1" parent="30">
           <mxGeometry x="505" y="690" width="225" height="100" as="geometry" />
         </mxCell>
         <mxCell id="38" value="铸件输出&#xa;Deck · Poster · Dashboard · Dark / Light" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#D8F0E3;strokeColor=#3C8C64;strokeWidth=2;fontFamily=PingFang SC;fontSize=15;fontStyle=1;fontColor=#20573B;" vertex="1" parent="30">
@@ -88,10 +88,10 @@
           <mxGeometry x="610" y="415" width="120" height="135" as="geometry" />
         </mxCell>
 
-        <mxCell id="40" value="失败回流：Mold Gap / Gap Report&#xa;停止当前铸件，不生成近似替代品" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#B85450;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontStyle=1;fontColor=#6B2925;" vertex="1" parent="1">
+        <mxCell id="40" value="定向回流：Review Finding / Mold Gap / Gap Report&#xa;Evidence · Owner Interface · Return Step · Required Change" style="rounded=1;arcSize=14;whiteSpace=wrap;html=1;fillColor=#FCE8E6;strokeColor=#B85450;strokeWidth=2;fontFamily=PingFang SC;fontSize=14;fontStyle=1;fontColor=#6B2925;" vertex="1" parent="1">
           <mxGeometry x="700" y="1450" width="400" height="75" as="geometry" />
         </mxCell>
-        <mxCell id="41" value="Project Profile：品牌 Figma keys、Variables、Recipes、Registry、Readiness 与 Evidence&#xa;AEGIS X 是当前第一个 Profile，不是范铸本身。" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EEEAE4;strokeColor=#75695E;fontFamily=PingFang SC;fontSize=13;fontColor=#4B433C;dashed=1;" vertex="1" parent="1">
+        <mxCell id="41" value="Project Profile：领域语义、Figma keys、Variables、Recipes、Registry 与 Readiness&#xa;品牌专属事实保存在使用者自己的私有 Profile。" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EEEAE4;strokeColor=#75695E;fontFamily=PingFang SC;fontSize=13;fontColor=#4B433C;dashed=1;" vertex="1" parent="1">
           <mxGeometry x="70" y="1450" width="540" height="75" as="geometry" />
         </mxCell>
         <mxCell id="42" value="颜色说明：棕色 = 制范　绿色 = 浇铸　红色 = 阻塞/返修" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;fillColor=#EEEAE4;strokeColor=#75695E;fontFamily=PingFang SC;fontSize=13;fontColor=#4B433C;dashed=1;" vertex="1" parent="1">

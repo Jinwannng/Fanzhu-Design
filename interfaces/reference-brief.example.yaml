@@ -1,0 +1,51 @@
+schema_version: 1
+brief_id: reference-example-001
+status: Accepted # Draft | Accepted | ChangesRequested
+
+intent:
+  subject: A quarterly product strategy deck.
+  audience: Product and business decision makers.
+  output: {type: deck, size: 1280x720, mode: Dark}
+  single_job: Help the audience understand the strategy and its supporting evidence.
+  content_thesis: Sustainable growth comes from aligning product focus, execution and evidence.
+  facts_to_preserve:
+    - All metrics retain their original source and time window.
+  non_goals:
+    - Do not turn the deck into a product dashboard.
+  unknowns:
+    - Final publication date.
+
+information_architecture:
+  primary_relationship: claim_to_evidence
+  hierarchy: [conclusion, supporting_evidence, implication]
+  page_types: [cover, narrative, compare, data]
+  data_rules:
+    - Missing values are not rendered as zero.
+    - Every chart keeps its source and time window.
+
+design_direction:
+  visual_thesis: Precise editorial structure with one controlled material accent.
+  reference_reading:
+    transfer: [strong typographic hierarchy, restrained contrast, directional light]
+    do_not_copy: [source branding, incidental layout, screenshot pixels]
+  palette_roles: [background, foreground, muted, accent, positive, warning]
+  type_roles: [display, body, data, label]
+  density: focused
+  material_responsibilities:
+    - Glass is limited to the primary evidence surface.
+  signature: A single directional evidence rail linking claim to proof.
+  restraint:
+    - No repeated glow, decorative numbering or equal-weight card wall.
+  theme_behavior: Dark and Light preserve geometry, hierarchy and content order.
+  motion: none
+
+handoff:
+  visual_grammar: [editorial_hierarchy, controlled_glass, directional_evidence_rail]
+  layout_grammar: [claim_to_evidence, asymmetric_focus]
+  component_semantics: [evidence_panel, source_label, comparison_axis]
+  content_rules: [one_conclusion_per_page, source_and_time_window_required]
+  open_decisions: []
+
+approval:
+  human_owner: design-owner
+  accepted_at: 2026-07-16

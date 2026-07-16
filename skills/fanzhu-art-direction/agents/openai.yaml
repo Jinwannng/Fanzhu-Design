@@ -1,0 +1,4 @@
+interface:
+  display_name: "范铸 · 定调"
+  short_description: "Turn content and references into an executable design brief"
+  default_prompt: "Use $fanzhu-art-direction to turn this content SSOT and style reference into a validated Intent, Information Architecture, and Design Direction brief."
